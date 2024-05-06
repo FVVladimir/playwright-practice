@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
 
 test.describe('test Registation form with positiv data', () => {
 
-  test('test field Name', async ({ page }) => {
+  test('test correct data', async ({ page }) => {
     await page.locator('#signupName').fill('Eric')
     await page.locator('#signupLastName').fill('Cartman')
     await page.locator('#signupEmail').fill('emir+aqa@ua.fm')
