@@ -1,18 +1,24 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 
-test('open base page', async ({ page }) => {
-  await page.goto('/');
-
-  // // Expect a title "to contain" a substring.
-  // await expect(page).toHaveTitle(/Playwright/);
+test.beforeEach(async ({ page }) => {
+  await page.goto('/')
+  await page.getByText('Sign up').click()
+  const form = page.getByText('Registration')
+  await expect(form).toBeVisible()
 });
 
-// test('get started link', async ({ page }) => {
-//   await page.goto('https://playwright.dev/');
 
-//   // Click the get started link.
-//   await page.getByRole('link', { name: 'Get started' }).click();
+test.describe('test Registation form with positiv data', () => {
 
-//   // Expects page to have a heading with the name of Installation.
-//   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-// });
+  test('test field Name', async ({ page }) => {
+    await page.locator('#signupName').fill('Eric')
+    await page.locator('#signupLastName').fill('Cartman')
+    await page.locator('#signupEmail').fill('emir+aqa@ua.fm')
+    await page.locator('#signupPassword').fill('Qwerty12345')
+    await page.locator('#signupRepeatPassword').fill('Qwerty12345')
+    await page.getByText('Register').click()
+    await page.locator('#userNavDropdown').click()
+    await page.locator(".user-nav_menu-group").click()
+  });
+
+});
