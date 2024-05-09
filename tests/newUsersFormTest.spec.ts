@@ -23,7 +23,7 @@ test.describe('test Registation form with positiv data', () => {
     test("empty field", async ({page}) => {
       await page.locator('#signupName').fill('')
       await page.locator('#signupName').blur()
-      await expect(page.getByText('Name required')).toBeVisible()
+      await expect(page.getByText('Name required')).toBeVisible()      
     })
     test("invalid Name", async({page}) => {
       await page.locator('#signupName').fill('234')
@@ -40,8 +40,8 @@ test.describe('test Registation form with positiv data', () => {
       await page.locator('#signupName').blur()
       await expect(page.getByText('Name has to be from 2 to 20 characters long')).toBeVisible()
     })
-    test("border color", async ({page}) => {
-
+    test("border color", async ({page}) => {      
+    
     })
   });
 
@@ -102,6 +102,11 @@ test.describe('test Registation form with positiv data', () => {
         
   });
   test.describe("Field Re-Enter Password", () => {
+    test("password do not mach", async ({page}) => {
+      await page.locator('#signupPassword').fill('EricCartman190')
+      await page.locator('#signupRepeatPassword').fill('EricCartman123')
+     
+    })
     test("Empty field Email", async({page}) => {
       await page.locator('#signupRepeatPassword').fill('')
       await page.locator('#signupRepeatPassword').blur()
@@ -114,14 +119,25 @@ test.describe('test Registation form with positiv data', () => {
   });
   test.describe("Button Register", () => {
         
-  }); 
+  });
 
 });
 
- // test("Delete Profile", async () => {
-    // await page.getByRole('button', { name: 'User photo My profile' }).click();
-    // await page.getByRole('link', { name: 'Settings', exact: true }).click()
-    // await page.getByRole('button', { name: 'Remove my account' }).click()
-    // await page.getByRole('button', { name: 'Remove' }).click()
-        
-  // });
+test.afterAll("Delete Profile", async ({page}) => {
+    
+  await page.getByRole('button', { name: 'Sign In' }).click()
+  await page.locator('#signinEmail').fill('emir+aqa@ua.fm')
+  await page.locator('#signinPassword').fill('Qwerty12345')
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByRole('button', { name: '#userNavDropdown' }).click();
+  await page.getByRole('link', { name: 'Settings', exact: true }).click()
+  await page.getByRole('button', { name: 'Remove my account' }).click()
+  await page.getByRole('button', { name: 'Remove' }).click()
+      
+});
+
+
+
+  
+  // await page.getByLabel('Email').click();
+  // await page.getByLabel('Password').click();
