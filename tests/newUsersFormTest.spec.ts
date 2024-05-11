@@ -16,21 +16,7 @@ test.describe("test Registation form with positiv data", () => {
     await page.locator('#signupPassword').fill('Qwerty12345')
     await page.locator('#signupRepeatPassword').fill('Qwerty12345')
     await page.getByText('Register').click()
-  })
-
-  // test.afterAll("Delete Profile", async ({page}) => {
-
-  //   await page.getByLabel('Close').click();  
-  //   await page.getByRole('button', { name: 'Sign In' }).click()
-  //   await page.locator('#signinEmail').fill('emir+aqa@ua.fm')
-  //   await page.locator('#signinPassword').fill('Qwerty12345')
-  //   await page.getByRole('button', { name: 'Login' }).click()
-  //   await page.getByRole('button', { name: '#userNavDropdown' }).click()
-  //   await page.getByRole('link', { name: 'Settings', exact: true }).click()
-  //   await page.getByRole('button', { name: 'Remove my account' }).click()
-  //   await page.getByRole('button', { name: 'Remove' }).click()
-        
-  // });
+  })  
 })
 
 test.describe('test Registation form with errors', () => { 
@@ -189,8 +175,8 @@ test("Delete Profile", async ({page}) => {
   await page.getByRole('button', { name: 'Sign In' }).click()
   await page.locator('#signinEmail').fill('emir+aqa@ua.fm')
   await page.locator('#signinPassword').fill('Qwerty12345')
-  await page.getByRole('button', { name: 'Login' }).click()
-  await page.getByRole('button', { name: '#userNavDropdown' }).click()
+  await page.getByRole('button', { name: 'Login' }).click()  
+  await page.locator('#userNavDropdown').click()
   await page.getByRole('link', { name: 'Settings', exact: true }).click()
   await page.getByRole('button', { name: 'Remove my account' }).click()
   await page.getByRole('button', { name: 'Remove' }).click()
