@@ -1,13 +1,13 @@
 import { test, expect, type Page } from '@playwright/test';
 
-test.beforeEach(async ({ page }) => {
-  await page.goto('/')
-  await page.getByText('Sign up').click()
-  const form = page.getByText('Registration')
-  await expect(form).toBeVisible()
-});
-
 test.describe("test Registation form with positiv data", () => {
+
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/')
+    await page.getByText('Sign up').click()
+    const form = page.getByText('Registration')
+    await expect(form).toBeVisible()
+  });
   
   test('test correct data', async ({ page }) => {
     await page.locator('#signupName').fill('Eric')
@@ -16,10 +16,31 @@ test.describe("test Registation form with positiv data", () => {
     await page.locator('#signupPassword').fill('Qwerty12345')
     await page.locator('#signupRepeatPassword').fill('Qwerty12345')
     await page.getByText('Register').click()
-  })  
+  })
+  
+  test("Delete Profile", async ({page}) => {  // як тільки тут пишу afterAll одразу висне на 22 рядку і все.....
+    // await page.getByLabel('Close').click();  
+    await page.locator('.close').click();  
+    await page.getByRole('button', { name: 'Sign In' }).click()
+    await page.locator('#signinEmail').fill('emir+aqa@ua.fm')
+    await page.locator('#signinPassword').fill('Qwerty12345')
+    await page.getByRole('button', { name: 'Login' }).click()  
+    await page.locator('#userNavDropdown').click()
+    await page.getByRole('link', { name: 'Settings', exact: true }).click()
+    await page.getByRole('button', { name: 'Remove my account' }).click()
+    await page.getByRole('button', { name: 'Remove' }).click()
+        
+  })
 })
 
 test.describe('test Registation form with errors', () => { 
+
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/')
+    await page.getByText('Sign up').click()
+    const form = page.getByText('Registration')
+    await expect(form).toBeVisible()
+  });
 
   test.describe("field Name", () => {
     
@@ -159,26 +180,45 @@ test.describe('test Registation form with errors', () => {
     })
         
   });
-  test.describe("Button Register", () => {
-    // test("correct registration", () => {
-
-    // })
-        
-  });
 
 });
 
+test.describe("Button Register", () => {
 
-test("Delete Profile", async ({page}) => {
+        test.beforeEach(async ({ page }) => {
+          await page.goto('/')
+          await page.getByText('Sign up').click()
+          const form = page.getByText('Registration')
+          await expect(form).toBeVisible()
+      });
+  
+  test("incorrect registration", async ({page}) => {
+    await expect(page.getByText('Register')).toHaveJSProperty('disabled', true)
+  })
 
-  await page.getByLabel('Close').click();  
-  await page.getByRole('button', { name: 'Sign In' }).click()
-  await page.locator('#signinEmail').fill('emir+aqa@ua.fm')
-  await page.locator('#signinPassword').fill('Qwerty12345')
-  await page.getByRole('button', { name: 'Login' }).click()  
-  await page.locator('#userNavDropdown').click()
-  await page.getByRole('link', { name: 'Settings', exact: true }).click()
-  await page.getByRole('button', { name: 'Remove my account' }).click()
-  await page.getByRole('button', { name: 'Remove' }).click()
+  test('correct registration', async ({ page }) => {
+    await page.locator('#signupName').fill('Eric')
+    await page.locator('#signupLastName').fill('Cartman')
+    await page.locator('#signupEmail').fill('emir+aqa@ua.fm')
+    await page.locator('#signupPassword').fill('Qwerty12345')
+    await page.locator('#signupRepeatPassword').fill('Qwerty12345')
+    await page.getByText('Register').click()
+    await expect(page).toHaveURL('https://qauto.forstudy.space/panel/garage')
+    
+  })
+
+  test("Delete Profile", async ({page}) => {  // як тільки тут пишу afterAll одразу висне на 22 рядку і все.....
+    // await page.getByLabel('Close').click();  
+    await page.locator('.close').click();  
+    await page.getByRole('button', { name: 'Sign In' }).click()
+    await page.locator('#signinEmail').fill('emir+aqa@ua.fm')
+    await page.locator('#signinPassword').fill('Qwerty12345')
+    await page.getByRole('button', { name: 'Login' }).click()  
+    await page.locator('#userNavDropdown').click()
+    await page.getByRole('link', { name: 'Settings', exact: true }).click()
+    await page.getByRole('button', { name: 'Remove my account' }).click()
+    await page.getByRole('button', { name: 'Remove' }).click()
+        
+  })
       
 });
