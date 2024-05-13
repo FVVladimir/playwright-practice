@@ -2,8 +2,7 @@ import { type Locator, type Page } from '@playwright/test';
 
 export class GaragePage {
   readonly page: Page;
-  readonly removeMyAccauntButton: Locator;
-  
+  readonly removeMyAccauntButton: Locator;  
 
   constructor(page: Page) {
     this.page = page;
