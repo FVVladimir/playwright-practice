@@ -1,165 +1,165 @@
-import { test, expect, type Page } from '@playwright/test';
-import { OuterHeader } from '../page-obgect/component/outerHeader';
+import { test, expect} from '@playwright/test';
 import { MainPage } from '../page-obgect/pages/mainPage';
+import { SignUpForm } from '../page-obgect/forms/signUpForm';
+import { SignInForm } from '../page-obgect/forms/signInForm';
+import { OuterHeader } from '../page-obgect/component/outerHeader';
+import { InnerHeader } from '../page-obgect/component/innerHeader';
+import { GaragePage } from '../page-obgect/pages/garagePage';
 
-test.describe("test Registation form with positiv data", () => {
-
-    let mainPage: MainPage
-
-    test.beforeEach(async ({ page }) => {
-        await page.goto('/')
+test.describe("Registation user", () => {    
+    
+    let mainPage : MainPage
+    let signUpForm : SignUpForm
+    
+    test.beforeEach(async ({ page }) => {        
+        
         mainPage = new MainPage(page)
-        await mainPage.clickSignUpButton()
-        const form = page.getByText('Registration')
-        await expect(form).toBeVisible()
+        signUpForm = new SignUpForm(page)        
+        
+        await page.goto('/')
+        await mainPage.clickSignUpButton()        
+        await expect(page.getByText('Registration')).toBeVisible()
     });
 
-    test('test correct data', async ({ page }) => {
-        await page.locator('#signupName').fill('Eric')
-        await page.locator('#signupLastName').fill('Cartman')
-        await page.locator('#signupEmail').fill('emir+aqa@ua.fm')
-        await page.locator('#signupPassword').fill('Qwerty12345')
-        await page.locator('#signupRepeatPassword').fill('Qwerty12345')
-        await page.getByText('Register').click()
-    })
-
-    test("Delete Profile", async ({ page }) => {  // як тільки тут пишу afterAll одразу висне на 22 рядку і все.....
-        // await page.getByLabel('Close').click();  
-        await page.locator('.close').click();
-        await page.getByRole('button', { name: 'Sign In' }).click()
-        await page.locator('#signinEmail').fill('emir+aqa@ua.fm')
-        await page.locator('#signinPassword').fill('Qwerty12345')
-        await page.getByRole('button', { name: 'Login' }).click()
-        await page.locator('#userNavDropdown').click()
-        await page.getByRole('link', { name: 'Settings', exact: true }).click()
-        await page.getByRole('button', { name: 'Remove my account' }).click()
-        await page.getByRole('button', { name: 'Remove' }).click()
-
+    test('test registration with correct data', async ({ page }) => {      
+        
+        await signUpForm.fieldName.fill('Eric')
+        await signUpForm.fieldLastName.fill('Cartman')
+        await signUpForm.fieldEmail.fill('emir+aqa@ua.fm')
+        await signUpForm.fieldPassword.fill('Qwerty12345')
+        await signUpForm.fieldRepeatPassword.fill('Qwerty12345')
+        await signUpForm.buttonRegister.click()
+        await expect(page).toHaveURL('https://qauto.forstudy.space/panel/garage')
     })
 })
 
-test.describe('test Registation form with errors', () => {
+test.describe('Registation form test', () => {
+
+    let mainPage : MainPage
+    let signUpForm : SignUpForm
 
     test.beforeEach(async ({ page }) => {
+        
+        signUpForm = new SignUpForm(page)
+        mainPage = new MainPage(page)
+
         await page.goto('/')
-        // outerHeader = new OuterHeader(page)
-        await page.getByText('Sign up').click()
-        const form = page.getByText('Registration')
-        await expect(form).toBeVisible()
+        await mainPage.clickSignUpButton()        
+        await expect( page.getByText('Registration')).toBeVisible()
     });
 
-    test.describe("field Name", () => {
+    test.describe("field Name", () => {   
 
-        test("empty field", async ({ page }) => {
-            await page.locator('#signupName').fill('')
-            await page.locator('#signupName').blur()
+        test("empty field", async ({ page }) => {            
+            await signUpForm.fieldName.fill('')
+            await signUpForm.fieldName.blur()
             await expect(page.getByText('Name required')).toBeVisible()
         })
         test("invalid Name", async ({ page }) => {
-            await page.locator('#signupName').fill('234')
-            await page.locator('#signupName').blur()
+            await signUpForm.fieldName.fill('234')
+            await signUpForm.fieldName.blur()
             await expect(page.getByText('Name is invalid')).toBeVisible()
         })
         test("short  Name", async ({ page }) => {
-            await page.locator('#signupName').fill('a')
-            await page.locator('#signupName').blur()
+            await signUpForm.fieldName.fill('a')
+            await signUpForm.fieldName.blur()
             await expect(page.getByText('Name has to be from 2 to 20 characters long')).toBeVisible()
         })
         test("long Name", async ({ page }) => {
-            await page.locator('#signupName').fill('aaaaaaaaaaaaaaaaaaaaa')
-            await page.locator('#signupName').blur()
+            await signUpForm.fieldName.fill('aaaaaaaaaaaaaaaaaaaaa')
+            await signUpForm.fieldName.blur()
             await expect(page.getByText('Name has to be from 2 to 20 characters long')).toBeVisible()
         })
         test("border color", async ({ page }) => {
-            await page.locator('#signupName').fill('')
-            await page.locator('#signupName').blur()
+            await signUpForm.fieldName.fill('')
+            await signUpForm.fieldName.blur()
             await expect(page.getByText('Name required')).toBeVisible()
             await expect(page.locator('#signupName')).toHaveCSS('border-color', 'rgb(220, 53, 69)')
 
         })
     });
-    test.describe("Field Last Name", () => {
+    test.describe("Field Last Name", () => {        
 
         test("empty field", async ({ page }) => {
-            await page.locator('#signupLastName').fill('')
-            await page.locator('#signupLastName').blur()
+            await signUpForm.fieldLastName.fill('')
+            await signUpForm.fieldLastName.blur()
             await expect(page.getByText('Last name required')).toBeVisible()
         })
         test("invalid last Name", async ({ page }) => {
-            await page.locator('#signupLastName').fill('234')
-            await page.locator('#signupLastName').blur()
+            await signUpForm.fieldLastName.fill('234')
+            await signUpForm.fieldLastName.blur()
             await expect(page.getByText('Last name is invalid')).toBeVisible()
         })
         test("short  last Name", async ({ page }) => {
-            await page.locator('#signupLastName').fill('a')
-            await page.locator('#signupLastName').blur()
+            await signUpForm.fieldLastName.fill('a')
+            await signUpForm.fieldLastName.blur()
             await expect(page.getByText('Last name has to be from 2 to 20 characters long')).toBeVisible()
         })
         test("long last Name", async ({ page }) => {
-            await page.locator('#signupLastName').fill('aaaaaaaaaaaaaaaaaaaaa')
-            await page.locator('#signupLastName').blur()
+            await signUpForm.fieldLastName.fill('aaaaaaaaaaaaaaaaaaaaa')
+            await signUpForm.fieldLastName.blur()
             await expect(page.getByText('Last name has to be from 2 to 20 characters long')).toBeVisible()
         })
         test("border color", async ({ page }) => {
-            await page.locator('#signupLastName').fill('')
-            await page.locator('#signupLastName').blur()
+            await signUpForm.fieldLastName.fill('')
+            await signUpForm.fieldLastName.blur()
             await expect(page.getByText('Name required')).toBeVisible()
             await expect(page.locator('#signupLastName')).toHaveCSS('border-color', 'rgb(220, 53, 69)')
-
         })
 
     });
     test.describe("Field email", () => {
 
         test("Wrong data Email", async ({ page }) => {
-            await page.locator('#signupEmail').fill('234')
-            await page.locator('#signupEmail').blur()
+            await signUpForm.fieldEmail.fill('234')
+            await signUpForm.fieldEmail.blur()
             await expect(page.getByText('Email is incorrect')).toBeVisible()
         })
         test("Empty field Email", async ({ page }) => {
-            await page.locator('#signupEmail').fill('')
-            await page.locator('#signupEmail').blur()
+            await signUpForm.fieldEmail.fill('')
+            await signUpForm.fieldEmail.blur()
             await expect(page.getByText('Email required')).toBeVisible()
         })
         test("border color", async ({ page }) => {
-            await page.locator('#signupEmail').fill('')
-            await page.locator('#signupEmail').blur()
+            await signUpForm.fieldEmail.fill('')
+            await signUpForm.fieldEmail.blur()
             await expect(page.getByText('Email required')).toBeVisible()
             await expect(page.locator('#signupEmail')).toHaveCSS('border-color', 'rgb(220, 53, 69)')
 
         })
 
     });
-    test.describe("Field Password", () => {
+    test.describe("Field Password", () => {         
+
         test("Empty field Password", async ({ page }) => {
-            await page.locator('#signupPassword').fill('')
-            await page.locator('#signupPassword').blur()
+            await signUpForm.fieldPassword.fill('')
+            await signUpForm.fieldPassword.blur()
             await expect(page.getByText('Password required')).toBeVisible()
         })
         test("Short field Password", async ({ page }) => {
-            await page.locator('#signupPassword').fill('1234')
-            await page.locator('#signupPassword').blur()
+            await signUpForm.fieldPassword.fill('1234')
+            await signUpForm.fieldPassword.blur()
             await expect(page.getByText('Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small lette')).toBeVisible()
         })
         test("Long field Password", async ({ page }) => {
-            await page.locator('#signupPassword').fill('qwertyuiopasdfghjk')
-            await page.locator('#signupPassword').blur()
+            await signUpForm.fieldPassword.fill('qwertyuiopasdfghjk')
+            await signUpForm.fieldPassword.blur()
             await expect(page.getByText('Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small lette')).toBeVisible()
         })
         test("Wrong without capital field Password", async ({ page }) => {
-            await page.locator('#signupPassword').fill('aaaaaaaaaa')
-            await page.locator('#signupPassword').blur()
+            await signUpForm.fieldPassword.fill('aaaaaaaaaa')
+            await signUpForm.fieldPassword.blur()
             await expect(page.getByText('Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small lette')).toBeVisible()
         })
         test("Wrong without small field Password", async ({ page }) => {
-            await page.locator('#signupPassword').fill('ASSSSAAAASSSS')
-            await page.locator('#signupPassword').blur()
+            await signUpForm.fieldPassword.fill('ASSSSAAAASSSS')
+            await signUpForm.fieldPassword.blur()
             await expect(page.getByText('Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small lette')).toBeVisible()
         })
 
         test("border color", async ({ page }) => {
-            await page.locator('#signupPassword').fill('')
-            await page.locator('#signupPassword').blur()
+            await signUpForm.fieldPassword.fill('')
+            await signUpForm.fieldPassword.blur()
             await expect(page.getByText('Password required')).toBeVisible()
             await expect(page.locator('#signupPassword')).toHaveCSS('border-color', 'rgb(220, 53, 69)')
 
@@ -167,19 +167,20 @@ test.describe('test Registation form with errors', () => {
 
     });
     test.describe("Field Re-Enter Password", () => {
+        
         test("password do not mach", async ({ page }) => {
-            await page.locator('#signupPassword').fill('EricCartman190')
-            await page.locator('#signupRepeatPassword').fill('EricCartman123')
+            await signUpForm.fieldPassword.fill('EricCartman190')
+            await signUpForm.fieldRepeatPassword.fill('EricCartman123')
 
         })
-        test("Empty field Re-enter password", async ({ page }) => {
-            await page.locator('#signupRepeatPassword').fill('')
-            await page.locator('#signupRepeatPassword').blur()
+        test("Empty field Re-enter password", async ({ page }) => {            
+            await signUpForm.fieldRepeatPassword.fill('')
+            await signUpForm.fieldRepeatPassword.blur()
             await expect(page.getByText('Re-enter password required')).toBeVisible()
         })
         test("border color", async ({ page }) => {
-            await page.locator('#signupRepeatPassword').fill('')
-            await page.locator('#signupRepeatPassword').blur()
+            await signUpForm.fieldRepeatPassword.fill('')
+            await signUpForm.fieldRepeatPassword.blur()
             await expect(page.getByText('Re-enter password required')).toBeVisible()
             await expect(page.locator('#signupRepeatPassword')).toHaveCSS('border-color', 'rgb(220, 53, 69)')
 
@@ -191,13 +192,25 @@ test.describe('test Registation form with errors', () => {
 
 test.describe("Button Register", () => {
 
-    let mainPage: MainPage
+    let outerHeader : OuterHeader
+    let innerHeader : InnerHeader
+    let mainPage : MainPage
+    let garagePage : GaragePage
+    let signInForm : SignInForm
+    let signUpForm : SignUpForm    
+    
     test.beforeEach(async ({ page }) => {
-        await page.goto('/')
+        
+        outerHeader = new OuterHeader(page)
+        innerHeader = new InnerHeader(page)
         mainPage = new MainPage(page)
-        await mainPage.clickSignUpButton()
-        const form = page.getByText('Registration')
-        await expect(form).toBeVisible()
+        garagePage = new GaragePage(page)
+        signInForm = new SignInForm(page)
+        signUpForm = new SignUpForm(page)
+        
+        await page.goto('/')
+        await mainPage.clickSignUpButton()        
+        await expect(page.getByText('Registration')).toBeVisible()
     });
 
     test("incorrect registration", async ({ page }) => {
@@ -205,26 +218,25 @@ test.describe("Button Register", () => {
     })
 
     test('correct registration', async ({ page }) => {
-        await page.locator('#signupName').fill('Eric')
-        await page.locator('#signupLastName').fill('Cartman')
-        await page.locator('#signupEmail').fill('emir+aqa@ua.fm')
-        await page.locator('#signupPassword').fill('Qwerty12345')
-        await page.locator('#signupRepeatPassword').fill('Qwerty12345')
-        await page.getByText('Register').click()
+        await signUpForm.fieldName.fill('Eric')
+        await signUpForm.fieldLastName.fill('Cartman')
+        await signUpForm.fieldEmail.fill('emir+aqa@ua.fm')
+        await signUpForm.fieldPassword.fill('Qwerty12345')
+        await signUpForm.fieldRepeatPassword.fill('Qwerty12345')
+        await signUpForm.clickRegisterButton()
         await expect(page).toHaveURL('https://qauto.forstudy.space/panel/garage')
 
     })
 
-    test("Delete Profile", async ({ page }) => {  // як тільки тут пишу afterAll одразу висне на 22 рядку і все.....
-        // await page.getByLabel('Close').click();  
-        await page.locator('.close').click();
-        await page.getByRole('button', { name: 'Sign In' }).click()
-        await page.locator('#signinEmail').fill('emir+aqa@ua.fm')
-        await page.locator('#signinPassword').fill('Qwerty12345')
-        await page.getByRole('button', { name: 'Login' }).click()
-        await page.locator('#userNavDropdown').click()
-        await page.getByRole('link', { name: 'Settings', exact: true }).click()
-        await page.getByRole('button', { name: 'Remove my account' }).click()
+    test("Delete Profile", async ({ page }) => {       
+        await signUpForm.buttonClose.click();
+        await outerHeader.clickSignUpButton()
+        await signInForm.emailField.fill('emir+aqa@ua.fm')
+        await signInForm.passwordField.fill('Qwerty12345')
+        await signInForm.clickLoginButton()   
+        await innerHeader.clickDropDownMenu()
+        await innerHeader.clickOptionSetting()
+        await garagePage.clickRemoveMyAccautntButton()
         await page.getByRole('button', { name: 'Remove' }).click()
 
     })
