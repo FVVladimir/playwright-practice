@@ -3,8 +3,7 @@ import { type Locator, type Page } from '@playwright/test';
 export class InnerHeader {
   readonly page: Page;
   readonly dropDownMenu: Locator;
-  readonly optionSetting: Locator;
-  
+  readonly optionSetting: Locator; 
 
   constructor(page: Page) {
     this.page = page;
