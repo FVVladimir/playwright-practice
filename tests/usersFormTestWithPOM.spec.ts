@@ -5,6 +5,16 @@ import { SignInForm } from '../page-obgect/forms/signInForm';
 import { OuterHeader } from '../page-obgect/component/outerHeader';
 import { InnerHeader } from '../page-obgect/component/innerHeader';
 import { GaragePage } from '../page-obgect/pages/garagePage';
+import { beforeEach } from 'node:test';
+
+test.beforeEach( async ({page}) => {
+    console.log("holla i am a global before each")
+})
+test.afterAll( async ({page}) => {
+    console.log("holla i am a global after all")
+})
+
+
 
 test.describe("Registation user", () => {    
     
@@ -19,6 +29,7 @@ test.describe("Registation user", () => {
         await page.goto('/')
         await mainPage.clickSignUpButton()        
         await expect(page.getByText('Registration')).toBeVisible()
+        console.log("holla i am befor each from registration user")
     });
 
     test('test registration with correct data', async ({ page }) => {      
@@ -46,6 +57,7 @@ test.describe('Registation form test', () => {
         await page.goto('/')
         await mainPage.clickSignUpButton()        
         await expect( page.getByText('Registration')).toBeVisible()
+        console.log("guten tag i am before each from registration form")
     });
 
     test.describe("field Name", () => {   
@@ -211,6 +223,7 @@ test.describe("Button Register", () => {
         await page.goto('/')
         await mainPage.clickSignUpButton()        
         await expect(page.getByText('Registration')).toBeVisible()
+        console.log("hi i am before each for button register teast")
     });
 
     test("incorrect registration", async ({ page }) => {
