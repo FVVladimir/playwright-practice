@@ -37,7 +37,7 @@ test.describe("Registation user", () => {
         await signUpForm.fieldName.fill('Eric')
         await signUpForm.fieldLastName.fill('Cartman')
         await signUpForm.fieldEmail.fill('emir+aqa@ua.fm')
-        await signUpForm.fieldPassword.fill('Qwerty12345')
+        await signUpForm.fieldPassword.fill(process.env.USER_CORRECT_PASSWORD ?? '')
         await signUpForm.fieldRepeatPassword.fill('Qwerty12345')
         await signUpForm.buttonRegister.click()
         await expect(page).toHaveURL('https://qauto.forstudy.space/panel/garage')
