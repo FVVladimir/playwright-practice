@@ -1,10 +1,10 @@
 import { test, expect} from '@playwright/test';
-import { MainPage } from '../page-obgect/pages/mainPage';
-import { SignUpForm } from '../page-obgect/forms/signUpForm';
-import { SignInForm } from '../page-obgect/forms/signInForm';
-import { OuterHeader } from '../page-obgect/component/outerHeader';
-import { InnerHeader } from '../page-obgect/component/innerHeader';
-import { GaragePage } from '../page-obgect/pages/garagePage';
+import { MainPage } from '../page-object/pages/mainPage';
+import { SignUpForm } from '../page-object/forms/signUpForm';
+import { SignInForm } from '../page-object/forms/signInForm';
+import { OuterHeader } from '../page-object/component/outerHeader';
+import { InnerHeader } from '../page-object/component/innerHeader';
+import { GaragePage } from '../page-object/pages/garagePage';
 
 
 test.beforeEach( async ({page}) => {
@@ -16,7 +16,7 @@ test.afterAll( async ({page}) => {
 
 
 
-test.describe("Registation user", () => {    
+test.describe("Registration user", () => {    
     
     let mainPage : MainPage
     let signUpForm : SignUpForm
@@ -29,7 +29,7 @@ test.describe("Registation user", () => {
         await page.goto('/')
         await mainPage.clickSignUpButton()        
         await expect(page.getByText('Registration')).toBeVisible()
-        console.log("holla i am befor each from registration user")
+        console.log("holla i am before each from registration user")
     });
 
     test('test registration with correct data', async ({ page }) => {      
