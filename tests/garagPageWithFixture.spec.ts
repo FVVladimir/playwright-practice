@@ -18,8 +18,8 @@ test.describe(" test garage page with fixture", () => {
            
            test.only('add car', async ({garagePage, page}) => {
             await garagePage.addCarButton.click()           
-            await page.getByLabel('Brand').selectOption('1: 2')
-            await page.getByLabel('Model').selectOption('13: 9')            
+            await page.locator('#addCarBrand').selectOption('Audi')
+            await page.locator('#addCarModel').selectOption('TT')            
             await page.locator('#addCarMileage').click()
             await page.locator('#addCarMileage').fill('12345')
             await page.getByRole('button', { name: 'Add' }).click()
