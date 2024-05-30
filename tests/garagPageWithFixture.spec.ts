@@ -16,23 +16,44 @@ test.describe(" test garage page with fixture", () => {
             await expect(garagePage.profileLink).toBeVisible()
            })    
            
-           test.only('add car', async ({garagePage, page}) => {
+           test('add cars', async ({garagePage, page}) => {
+            
             await garagePage.addCarButton.click()           
-            await page.locator('#addCarBrand').selectOption('Audi')
-            await page.locator('#addCarModel').selectOption('TT')            
-            await page.locator('#addCarMileage').click()
-            await page.locator('#addCarMileage').fill('12345')
-            await page.getByRole('button', { name: 'Add' }).click()
+            await garagePage.addCarBrand.selectOption('Audi')
+            await garagePage.addCarModel.selectOption('TT')            
+            await garagePage.addCarMileage.click()
+            await garagePage.addCarMileage.fill('12345')
+            await garagePage.addButton.click()
+            await garagePage.addCarButton.click()           
+            await garagePage.addCarBrand.selectOption('BMW')
+            await garagePage.addCarModel.selectOption('X5')            
+            await garagePage.addCarMileage.click()
+            await garagePage.addCarMileage.fill('12345')
+            await garagePage.addButton.click()
            })    
-        //    test('remove  car', async ({garagePage, page}) => {
-        //     await garagePage.addCarButton.click()           
-        //     await page.getByLabel('Brand').selectOption('1: 2')
-        //     await page.getByLabel('Model').selectOption('13: 9');
-        //     await page.getByLabel('Mileage').click();
-        //     await page.getByLabel('Mileage').fill('12345');
-        //     await page.getByRole('button', { name: 'Add' }).click();
-        //     await page.getByRole('button', { name: '' }).click();
-        //     await page.getByRole('button', { name: 'Remove car' }).click();
-        //     await page.getByRole('button', { name: 'Remove' }).click();
-        //    })    
+           test('remove  car', async ({garagePage, page}) => {
+            
+            await garagePage.addCarButton.click()           
+            await garagePage.addCarBrand.selectOption('Audi')
+            await garagePage.addCarModel.selectOption('TT')            
+            await garagePage.addCarMileage.click()
+            await garagePage.addCarMileage.fill('12345')
+            await garagePage.addButton.click()
+            await garagePage.addCarButton.click()           
+            await garagePage.addCarBrand.selectOption('BMW')
+            await garagePage.addCarModel.selectOption('X5')            
+            await garagePage.addCarMileage.click()
+            await garagePage.addCarMileage.fill('12345')
+            await garagePage.addButton.click()
+            await page.getByRole('button', { name: '' }).first().click()
+            await garagePage.buttonRemoveCar.click()
+            await garagePage.buttonRemove.click()
+            await page.getByRole('button', { name: '' }).first().click()
+            await garagePage.buttonRemoveCar.click()
+            await garagePage.buttonRemove.click()
+           })
+           
+           test('check the text after deleted ', async ({ garagePage  }) => {        
+            await expect(garagePage.text).toBeVisible()
+             })
 })
