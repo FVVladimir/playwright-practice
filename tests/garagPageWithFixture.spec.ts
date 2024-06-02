@@ -53,7 +53,39 @@ test.describe(" test garage page with fixture", () => {
             await page.getByRole('button', { name: 'Remove' }).click()            
            })
            
-           test('check the text after deleted all cars', async ({ garagePage  }) => {        
+           test('check the image car', async ({ garagePage,page  }) => {
+            
+            await garagePage.addCarButton.click()
+            await garagePage.addCarBrand.selectOption('BMW')
+            await garagePage.addCarModel.selectOption('X5')            
+            await garagePage.addCarMileage.click()
+            await garagePage.addCarMileage.fill('12345')
+            await garagePage.addButton.click()       
+            await expect(page.locator(".car-logo_img")).toBeVisible()
+             })
+           test('check the name car car', async ({ garagePage, page  }) => { 
+            
+            await garagePage.addCarButton.click()
+            await garagePage.addCarBrand.selectOption('BMW')
+            await garagePage.addCarModel.selectOption('X5')            
+            await garagePage.addCarMileage.click()
+            await garagePage.addCarMileage.fill('12345')
+            await garagePage.addButton.click() 
+            await expect(page.locator(".car_name")).toHaveText("BMW X5")
+             })
+        //    test.only('check the mileage car', async ({ garagePage, page }) => { 
+            
+        //     await garagePage.addCarButton.click()
+        //     await garagePage.addCarBrand.selectOption('BMW')
+        //     await garagePage.addCarModel.selectOption('X5')            
+        //     await garagePage.addCarMileage.click()
+        //     await garagePage.addCarMileage.fill('12345')
+        //     await garagePage.addButton.click()
+        //     console.log(page.locator(".update-mileage-form_input"))
+        //     await expect(page.locator(".update-mileage-form_input.value")).toBe("12345")
+        //      })
+           
+             test('check the text after deleted all cars', async ({ garagePage  }) => {        
             await expect(garagePage.text).toBeVisible()
              })
 })
