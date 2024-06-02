@@ -47,13 +47,13 @@ test.describe(" test garage page with fixture", () => {
             await garagePage.addButton.click()
             await page.getByRole('button', { name: '' }).first().click()
             await garagePage.buttonRemoveCar.click()
-            await garagePage.buttonRemove.click()
-            await page.getByRole('button', { name: '' }).first().click()
+            await page.getByRole('button', { name: 'Remove' }).click()        
+            await page.getByRole('button', { name: '' })                                                                                                                                                   .click()
             await garagePage.buttonRemoveCar.click()
-            await garagePage.buttonRemove.click()
+            await page.getByRole('button', { name: 'Remove' }).click()            
            })
            
-           test('check the text after deleted ', async ({ garagePage  }) => {        
+           test('check the text after deleted all cars', async ({ garagePage  }) => {        
             await expect(garagePage.text).toBeVisible()
              })
 })
