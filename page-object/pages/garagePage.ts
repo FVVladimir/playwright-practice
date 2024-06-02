@@ -12,7 +12,7 @@ export class GaragePage {
   readonly addCarBrand: Locator;   
   readonly addCarMileage: Locator;  
   readonly buttonRemoveCar: Locator;  
-  // readonly buttonRemove: Locator; 
+  readonly buttonRemove: Locator; 
 
   constructor(page: Page) {
     this.page = page;
