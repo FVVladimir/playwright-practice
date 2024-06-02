@@ -3,6 +3,7 @@ import { test as base } from '@playwright/test'
 import { GaragePage } from '../page-object/pages/garagePage'
 import { MainPage } from "../page-object/pages/mainPage";
 import { SignUpForm } from "../page-object/forms/signUpForm";
+import { InnerHeader } from '../page-object/component/innerHeader';
 
 
 export const test = base.extend({
@@ -12,6 +13,7 @@ export const test = base.extend({
         let garagePage = new GaragePage(page)
         let mainPage = new MainPage(page)
         let signUpForm = new  SignUpForm(page)
+        let innerHeader = new InnerHeader(page)
 
         await page.goto("/")
         await mainPage.clickSignUpButton()        
@@ -25,8 +27,8 @@ export const test = base.extend({
         await use(garagePage)
 
         await page.getByRole('button', { name: 'User photo My profile' }).click()
-        await page.getByRole('link', { name: 'Settings', exact: true }).click()
-        await page.getByRole('button', { name: 'Remove my account' }).click()
+        await page.getByText('Settings').nth(1).click()
+        await page.getByText('Remove my account').click()
         await page.getByRole('button', { name: 'Remove' }).click()
     }
   })
