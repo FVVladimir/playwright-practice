@@ -4,7 +4,7 @@ import { test } from "../fixture/garageFixture"
 
 test.describe(" test garage page with fixture", () => {     
      
-         test('check the text', async ({ garagePage  }) => {        
+         test('check the text on garage page', async ({ garagePage  }) => {        
           await expect(garagePage.text).toBeVisible()
            })
          
@@ -16,7 +16,7 @@ test.describe(" test garage page with fixture", () => {
             await expect(garagePage.profileLink).toBeVisible()
            })    
            
-           test('add cars', async ({garagePage, page}) => {
+           test('add cars', async ({ garagePage }) => {
             
             await garagePage.addCarButton.click()           
             await garagePage.addCarBrand.selectOption('Audi')
@@ -31,7 +31,7 @@ test.describe(" test garage page with fixture", () => {
             await garagePage.addCarMileage.fill('12345')
             await garagePage.addButton.click()
            })    
-           test('remove  car', async ({garagePage, page}) => {
+           test('remove  cars', async ({garagePage, page}) => {
             
             await garagePage.addCarButton.click()           
             await garagePage.addCarBrand.selectOption('Audi')
@@ -63,7 +63,7 @@ test.describe(" test garage page with fixture", () => {
             await garagePage.addButton.click()       
             await expect(page.locator(".car-logo_img")).toBeVisible()
              })
-           test('check the name car car', async ({ garagePage, page  }) => { 
+           test('check the name and model car', async ({ garagePage, page  }) => { 
             
             await garagePage.addCarButton.click()
             await garagePage.addCarBrand.selectOption('BMW')
@@ -73,7 +73,7 @@ test.describe(" test garage page with fixture", () => {
             await garagePage.addButton.click() 
             await expect(page.locator(".car_name")).toHaveText("BMW X5")
              })
-        //    test.only('check the mileage car', async ({ garagePage, page }) => { 
+        //    test.only('check the mileage', async ({ garagePage, page }) => { 
             
         //     await garagePage.addCarButton.click()
         //     await garagePage.addCarBrand.selectOption('BMW')
@@ -81,11 +81,13 @@ test.describe(" test garage page with fixture", () => {
         //     await garagePage.addCarMileage.click()
         //     await garagePage.addCarMileage.fill('12345')
         //     await garagePage.addButton.click()
-        //     console.log(page.locator(".update-mileage-form_input"))
-        //     await expect(page.locator(".update-mileage-form_input.value")).toBe("12345")
+        //     // const mileage = page.getByRole('spinbutton')
+        //     const mileage = page.locator('input').value
+        //     console.log(mileage)
+        //     await expect(page.locator("input.value")).toBe("12345")
         //      })
            
              test('check the text after deleted all cars', async ({ garagePage  }) => {        
-            await expect(garagePage.text).toBeVisible()
+               await expect(garagePage.text).toBeVisible()
              })
 })
