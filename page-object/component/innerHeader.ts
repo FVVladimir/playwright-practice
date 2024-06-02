@@ -9,6 +9,7 @@ export class InnerHeader {
     this.page = page;
     this.dropDownMenu = page.locator('#userNavDropdown')
     this.optionSetting = page.getByRole('link', { name: 'Settings', exact: true })
+    // this.optionSetting = page.locator('//div[@class = "dropdown-divider"]//a[contains(text(), "Setting")]')
   }
 
   async clickDropDownMenu() {
