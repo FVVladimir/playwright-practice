@@ -10,20 +10,20 @@ describe("garagePage test with saved state", () => {
 
     let garagePage: GaragePage
 
-    test('check the text on garage page', async ({ garagePage, page }) => {
+    test('check the text on garage page', async ({ page }) => {
 
         garagePage = new GaragePage(page)
 
         await expect(garagePage.text).toBeVisible()
     })
 
-    test('check the garage link', async ({ garagePage, page }) => {
+    test('check the garage link', async ({ page }) => {
 
         garagePage = new GaragePage(page)
         await expect(garagePage.garageLink).toBeVisible()
     })
 
-    test('check the profile link', async ({ garagePage, page }) => {
+    test('check the profile link', async ({ page }) => {
 
         garagePage = new GaragePage(page)
         await expect(garagePage.profileLink).toBeVisible()
