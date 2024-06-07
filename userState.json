@@ -2,7 +2,7 @@
   "cookies": [
     {
       "name": "YSC",
-      "value": "iTvHBI-8s7A",
+      "value": "hPkzTSO5IFk",
       "domain": ".youtube.com",
       "path": "/",
       "expires": -1,
@@ -12,30 +12,20 @@
     },
     {
       "name": "VISITOR_INFO1_LIVE",
-      "value": "gHrTanVAFF4",
+      "value": "5IciUH94Jls",
       "domain": ".youtube.com",
       "path": "/",
-      "expires": 1733329476.569877,
+      "expires": 1733332236.575664,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
     },
     {
       "name": "VISITOR_PRIVACY_METADATA",
-      "value": "CgJVQRIEGgAgNw%3D%3D",
+      "value": "CgJVQRIEGgAgTw%3D%3D",
       "domain": ".youtube.com",
       "path": "/",
-      "expires": 1733329476.57021,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "None"
-    },
-    {
-      "name": "NID",
-      "value": "514=l_ZS37uZkvVQyACMgIs9BNRBk6G7-nST5nsGLyv-tmfkvxWbvdV9VR1ru9CwZ9KYTmaXU7f3cF6oJzwIr3bINugT74InzSGmzK1ZmANWJ9MbDEnwQTSLj0wHZ7WW5gsnaKsAu5BLtO-YmBgz9dEG3QQmukGsdfujLQom7VMV2Hk",
-      "domain": ".google.com",
-      "path": "/",
-      "expires": 1733588677.741778,
+      "expires": 1733332236.575771,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
