@@ -2,7 +2,7 @@
   "cookies": [
     {
       "name": "YSC",
-      "value": "gRI_4IJFq7s",
+      "value": "iTvHBI-8s7A",
       "domain": ".youtube.com",
       "path": "/",
       "expires": -1,
@@ -12,30 +12,30 @@
     },
     {
       "name": "VISITOR_INFO1_LIVE",
-      "value": "SsQhTlWiMOE",
+      "value": "gHrTanVAFF4",
       "domain": ".youtube.com",
       "path": "/",
-      "expires": 1733328035.954039,
+      "expires": 1733329476.569877,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
     },
     {
       "name": "VISITOR_PRIVACY_METADATA",
-      "value": "CgJVQRIEGgAgVg%3D%3D",
+      "value": "CgJVQRIEGgAgNw%3D%3D",
       "domain": ".youtube.com",
       "path": "/",
-      "expires": 1733328035.954777,
+      "expires": 1733329476.57021,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
     },
     {
       "name": "NID",
-      "value": "514=Bl4GbP3Pij3ykb3B7uzOiCw0BMZHh7FOTiHbsCRxqiyXgDqB_noZvGJrnFuWRrq5YtylOZHQC8BrSp52hqq-B-9kAD2eHJDvXjGW45oo15kM0EyFJSy25LCtyqTiQsULpLZ3B52LKloIZY1bIMqri2h426cPsFvtYqZaV8GSSlc",
+      "value": "514=l_ZS37uZkvVQyACMgIs9BNRBk6G7-nST5nsGLyv-tmfkvxWbvdV9VR1ru9CwZ9KYTmaXU7f3cF6oJzwIr3bINugT74InzSGmzK1ZmANWJ9MbDEnwQTSLj0wHZ7WW5gsnaKsAu5BLtO-YmBgz9dEG3QQmukGsdfujLQom7VMV2Hk",
       "domain": ".google.com",
       "path": "/",
-      "expires": 1733587237.12301,
+      "expires": 1733588677.741778,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
