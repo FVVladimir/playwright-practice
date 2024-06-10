@@ -6,9 +6,15 @@ import { GaragePage } from "../page-object/pages/garagePage"
 
 describe("garagePage test with saved state", () => {
 
-    test.use({ storageState: "../../userState.json" })
-
     let garagePage: GaragePage
+    
+    test.use({ storageState: "../../userState.json" })
+    
+    test.beforeEach(async ({page}) => {
+
+        await page.goto("/panel/garage")
+
+    })
 
     test('check the text on garage page', async ({ page }) => {
 
