@@ -2,7 +2,7 @@
   "cookies": [
     {
       "name": "YSC",
-      "value": "nD204ulL6X8",
+      "value": "iNHbmBVOx0I",
       "domain": ".youtube.com",
       "path": "/",
       "expires": -1,
@@ -12,20 +12,20 @@
     },
     {
       "name": "VISITOR_INFO1_LIVE",
-      "value": "M5_n5dcnOwk",
+      "value": "O6kTdF7xUqU",
       "domain": ".youtube.com",
       "path": "/",
-      "expires": 1733856041.830133,
+      "expires": 1733856274.108213,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"
     },
     {
       "name": "VISITOR_PRIVACY_METADATA",
-      "value": "CgJVQRIEGgAgHA%3D%3D",
+      "value": "CgJVQRIEGgAgXg%3D%3D",
       "domain": ".youtube.com",
       "path": "/",
-      "expires": 1733856041.830281,
+      "expires": 1733856274.108326,
       "httpOnly": true,
       "secure": true,
       "sameSite": "None"

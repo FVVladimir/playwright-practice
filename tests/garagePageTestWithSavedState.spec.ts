@@ -10,7 +10,7 @@ test.describe("garagePage test with saved state", () => {
     test.beforeEach(async ({page}) => {        
        
         garagePage = new GaragePage(page)
-        await page.goto("/panel/garage")
+        await page.goto("panel/garage")
         
     })
 
