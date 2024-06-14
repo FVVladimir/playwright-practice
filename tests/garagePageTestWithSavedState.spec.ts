@@ -5,12 +5,12 @@ test.describe("garagePage test with saved state", () => {
 
     let garagePage: GaragePage
 
-    test.use({ storageState: "./userState.json" })
+    test.use({ storageState: "./userState.json" })   
     
     test.beforeEach(async ({page}) => {        
        
         garagePage = new GaragePage(page)
-        await page.goto("panel/garage")
+        await page.goto('/panel/garage')
         
     })
 
