@@ -17,7 +17,8 @@ test.describe("Garage Page test with saved state", () => {
         await page.getByRole('button', { name: 'Sign In' }).click()
         await page.locator('#signinEmail').fill('emir+aqa@ua.fm')
         await page.locator('#signinPassword').fill('Qwerty12345')
-        await page.getByRole('button', { name: 'Login' }).click()      
+        await page.getByRole('button', { name: 'Login' }).click()
+        await page.waitForTimeout(1000)     
         await page.context().storageState({
 
             path: "userState.json"
